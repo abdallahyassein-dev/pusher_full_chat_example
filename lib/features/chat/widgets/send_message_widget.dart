@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:pusher_full_chat_example/core/constants.dart';
 import 'package:pusher_full_chat_example/core/main_services.dart';
 import 'package:pusher_full_chat_example/core/widgets/app_text_form_field.dart';
 import 'package:pusher_full_chat_example/features/chat/cubit/chat_cubit.dart';
+import 'package:pusher_full_chat_example/features/chat/widgets/audio_recorder.dart';
 
 class SendMessageWidget extends StatefulWidget {
   final int roomId;
@@ -20,8 +22,11 @@ class SendMessageWidget extends StatefulWidget {
 class _SendMessageWidgetState extends State<SendMessageWidget> {
   File? currentSelectedImage;
 
+  File? currentAudioFile;
   File? currentSelectedFile;
   TextEditingController messageController = TextEditingController();
+
+  bool showAudioRecorder = false;
 
   late ChatCubit chatCubit;
 
@@ -147,6 +152,27 @@ class _SendMessageWidgetState extends State<SendMessageWidget> {
                 height: 35,
               )
             : const SizedBox.shrink(),
+        showAudioRecorder
+            ? SizedBox(
+                height: 200,
+                child: AudioRecorderWidget(onStop: (audioPath) {
+                  log(audioPath.toString());
+                  if (audioPath.isNotEmpty) {
+                    currentAudioFile = File(audioPath);
+
+                    chatCubit.sendMessage(
+                        type: MESSAGETYPE.AUDIO,
+                        userId: widget.userId,
+                        roomId: widget.roomId,
+                        file: currentAudioFile);
+                  }
+
+                  setState(() {
+                    showAudioRecorder = false;
+                  });
+                }),
+              )
+            : SizedBox.shrink(),
         Container(
           padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 28),
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
@@ -206,6 +232,31 @@ class _SendMessageWidgetState extends State<SendMessageWidget> {
                             )),
                       ],
                     ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    showAudioRecorder = !showAudioRecorder;
+                  });
+                },
+                child: Container(
+                  height: 46,
+                  width: 46,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.orange,
+                  ),
+                  child: const Icon(
+                    Icons.mic,
+                    color: Colors.white,
+                    size: 25,
                   ),
                 ),
               ),
