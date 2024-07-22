@@ -1,4 +1,4 @@
-// ignore_for_file: unused_catch_clause
+// ignore_for_file: unused_catch_clause, deprecated_member_use
 
 import 'dart:developer';
 
