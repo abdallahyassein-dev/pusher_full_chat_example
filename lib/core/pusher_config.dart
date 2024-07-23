@@ -6,8 +6,6 @@ import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 // import 'package:http/http.dart' as http;
 
 class PusherConfig {
-  PusherChannelsFlutter pusher = PusherChannelsFlutter.getInstance();
-
   late PusherChannelsFlutter _pusher;
 
   String APP_ID = "1835492";
@@ -50,6 +48,10 @@ class PusherConfig {
     }
   }
 
+  void disconnect() {
+    _pusher.disconnect();
+  }
+
   void onConnectionStateChange(dynamic currentState, dynamic previousState) {
     log("Connection: $currentState");
   }
@@ -64,7 +66,7 @@ class PusherConfig {
 
   void onSubscriptionSucceeded(String channelName, dynamic data) {
     log("onSubscriptionSucceeded: $channelName data: $data");
-    final me = pusher.getChannel(channelName)?.me;
+    final me = _pusher.getChannel(channelName)?.me;
     log("Me: $me");
   }
 

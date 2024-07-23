@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -24,6 +25,8 @@ class ChatRepo {
     Map<String, dynamic> data = {"user_id": userId, "type": type};
 
     FormData formData = FormData.fromMap(data);
+
+    log(formData.fields.toString());
 
     if (content != null) {
       formData.fields.add(MapEntry("content", content));

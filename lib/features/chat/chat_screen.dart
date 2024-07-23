@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   ChatDetailsModel? chatDetailsModel;
 
-  int currentUser = 1; // here you add the current user id
+  int currentUser = 2; // here you add the current user id
 
   initilizeRoom(roomID) async {
     pusherConfig = PusherConfig();
@@ -77,7 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
-    pusherConfig.pusher.disconnect();
+    pusherConfig.disconnect();
     super.dispose();
   }
 

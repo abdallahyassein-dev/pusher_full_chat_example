@@ -296,12 +296,13 @@ class _SendMessageWidgetState extends State<SendMessageWidget> {
                 child: Container(
                   height: 46,
                   width: 46,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  decoration: BoxDecoration(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.green,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.send_sharp,
                     color: Colors.white,
                     size: 25,

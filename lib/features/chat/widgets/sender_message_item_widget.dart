@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pusher_full_chat_example/core/constants.dart';
 import 'package:pusher_full_chat_example/core/widgets/cached_image_widget.dart';
 import 'package:pusher_full_chat_example/features/chat/models/chat_details_model.dart';
+import 'package:pusher_full_chat_example/features/chat/widgets/audio_message.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SenderMsgItemWidget extends StatelessWidget {
@@ -59,13 +60,15 @@ class SenderMsgItemWidget extends StatelessWidget {
                                         fontSize: 16, color: Colors.white)),
                               ],
                             ))
-                        : Text(
-                            message.content.toString(),
-                            style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400),
-                          ),
+                        : message.type == "AUDIO"
+                            ? AudioMessage(source: message.content.toString())
+                            : Text(
+                                message.content.toString(),
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400),
+                              ),
               ),
               const SizedBox(
                 height: 6,
@@ -84,9 +87,9 @@ class SenderMsgItemWidget extends StatelessWidget {
         const SizedBox(width: 8),
         CachedImageWidget(
           imgUrl: message.sender!.avatar.toString(),
-          radius: 100,
-          height: 25,
-          width: 25,
+          radius: 150,
+          height: 40,
+          width: 40,
         ),
       ],
     );

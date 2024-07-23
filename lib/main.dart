@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Full Pusher Chat',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff168AFF)),
         useMaterial3: true,
@@ -53,6 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff168AFF)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(400),
+                    child: Image.asset("assets/images/logo.png")),
               ),
               const SizedBox(
                 height: 10,

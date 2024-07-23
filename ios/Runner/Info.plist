@@ -46,6 +46,9 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 
+		<key>NSPhotoLibraryUsageDescription</key>
+    <string>Some message to describe why you need this permission</string>
+
 	<key>NSMicrophoneUsageDescription</key>
     <string>Some message to describe why you need this permission</string>
 

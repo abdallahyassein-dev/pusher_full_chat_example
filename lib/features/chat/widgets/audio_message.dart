@@ -72,7 +72,7 @@ class AudioPlayerState extends State<AudioMessage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildControl(),
-            _buildSlider(80),
+            _buildSlider(300),
           ],
         );
       },
