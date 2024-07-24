@@ -8,9 +8,9 @@ import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 class PusherConfig {
   late PusherChannelsFlutter _pusher;
 
-  String APP_ID = "1835492";
-  String API_KEY = "2485bd604e8accfb509a";
-  String SECRET = "f0b78060be9b5cf4e785";
+  String APP_ID = "APP_ID";
+  String API_KEY = "API_KEY";
+  String SECRET = "SECRET";
   String API_CLUSTER = "eu";
 
   Future<void> initPusher(onEvent, {channelName = "chat.room", roomId}) async {

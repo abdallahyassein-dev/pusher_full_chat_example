@@ -1,5 +1,5 @@
 class ApiEndPoints {
-  static const baseUrl = 'https://saed.azq1.com/test/api';
+  static const baseUrl = 'BASE_URL';
 
   static const provideRoom = '/chats/provide';
   static const rooms = '/chats/rooms';
